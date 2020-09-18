@@ -18,7 +18,54 @@ export default class ruizLive extends Component {
         return (
 
             <View style={styles.signinContainer}>
-                <Text>ruizLive</Text>
+                <ScrollView>
+              <ImageBackground source = {require('./../image/back1.png')} style={{ height: 80}} resizeMode = 'stretch' >
+                <Text style={styles.title}>Ruiz Live</Text>
+                </ImageBackground>
+                <View style={{marginHorizontal: '5%',}}>
+                    <View style={{backgroundColor: Color.orange, width: '100%', marginVertical: '5%',}}>
+                        <View style={{flexDirection: 'row', alignItems: 'center', width: '90%',  marginVertical: '5%',}}>
+                            <Text style={{textAlign: 'center', marginLeft: 10,}}>16/9</Text>
+                            <Text style={{ marginTop: 0,paddingHorizontal: 10,}}>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</Text>
+                        </View>
+                        <View style={{borderBottomColor: Color.white, borderBottomWidth: 2, marginHorizontal: '5%',}}></View>
+                        <View style={{flexDirection: 'row', alignItems: 'center', width: '90%',  marginVertical: '5%',}}>
+                            <Text style={{textAlign: 'center', marginLeft: 10,}}>16/9</Text>
+                            <Text style={{ marginTop: 0, paddingHorizontal: 10}}>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</Text>
+                        </View>
+                        <View style={{borderBottomColor: Color.white, borderBottomWidth: 2, marginHorizontal: '5%',}}></View>
+                        <View style={{flexDirection: 'row', alignItems: 'center', width: '90%',  marginVertical: '5%',}}>
+                            <Text style={{textAlign: 'center', marginLeft: 10,}}>16/9</Text>
+                            <Text style={{ marginTop: 0, paddingHorizontal: 10}}>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</Text>
+                        </View>
+                        <View style={{borderBottomColor: Color.white, borderBottomWidth: 2, marginHorizontal: '5%',}}></View>
+                        <View style={{flexDirection: 'row', alignItems: 'center', width: '90%',  marginVertical: '5%',}}>
+                            <Text style={{textAlign: 'center', marginLeft: 10,}}>16/9</Text>
+                            <Text style={{ marginTop: 0, paddingHorizontal: 10}}>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</Text>
+                        </View>
+                        <View style={{borderBottomColor: Color.white, borderBottomWidth: 2, marginHorizontal: '5%',}}></View>
+                        <View style={{flexDirection: 'row', alignItems: 'center', width: '90%',  marginVertical: '5%',}}>
+                            <Text style={{textAlign: 'center', marginLeft: 10,}}>16/9</Text>
+                            <Text style={{ marginTop: 0, paddingHorizontal: 10}}>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</Text>
+                        </View>
+                        <View style={{borderBottomColor: Color.white, borderBottomWidth: 2, marginHorizontal: '5%',}}></View>
+                        <View style={{flexDirection: 'row', alignItems: 'center', width: '90%',  marginVertical: '5%',}}>
+                            <Text style={{textAlign: 'center', marginLeft: 10,}}>16/9</Text>
+                            <Text style={{ marginTop: 0, paddingHorizontal: 10}}>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</Text>
+                        </View>
+                        <View style={{borderBottomColor: Color.white, borderBottomWidth: 2, marginHorizontal: '5%',}}></View>
+                        <View style={{flexDirection: 'row', alignItems: 'center', width: '90%',  marginVertical: '5%',}}>
+                            <Text style={{textAlign: 'center', marginLeft: 10,}}>16/9</Text>
+                            <Text style={{ marginTop: 0, paddingHorizontal: 10,}}>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</Text>
+                        </View>
+                        <View style={{borderBottomColor: Color.white, borderBottomWidth: 2, marginHorizontal: '5%',}}></View>
+                        <View style={{flexDirection: 'row', alignItems: 'center', width: '90%',  marginVertical: '5%',}}>
+                            <Text style={{textAlign: 'center', marginLeft: 10,}}>16/9</Text>
+                            <Text style={{ marginTop: 0, paddingHorizontal: 10}}>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</Text>
+                        </View>
+                    </View>
+                </View>
+                </ScrollView>
             </View>
 
         );
@@ -30,5 +77,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Color.homebackroundColor,
     },
+    title: { alignSelf: 'center', fontSize: 25, marginTop: 15, color: Color.white, fontWeight: '600' },
+
 
 })

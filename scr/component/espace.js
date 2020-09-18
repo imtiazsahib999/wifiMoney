@@ -6,11 +6,13 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import IcIcon from 'react-native-vector-icons/FontAwesome'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+import CheckBox from 'react-native-check-box'
 
 export default class espace extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isSelected: false,
 
         };
     }
@@ -26,21 +28,34 @@ export default class espace extends Component {
                         <Text style={{ textAlign: 'center', fontSize: 18, fontWeight: '700', marginTop: 10, }}>Lorem ipsum, or lipsum sometimes</Text>
                         <Text style={{ textAlign: 'center', fontSize: 18, fontWeight: '700', marginTop: 10, }}>Lorem ipsum, or lipsum as it is sometimes</Text>
                         <View style={styles.inputView}>
-                            <TextInput style={{width: '80%'}}
+                            <TextInput style={{ width: '80%' }}
                                 placeholder="Username"
                             />
-                            <IcIcon style={{marginRight: 10,}} name={'user'} size={26} color={Color.orange} />
+                            <IcIcon style={{ marginRight: 10, }} name={'user'} size={26} color={Color.orange} />
                         </View>
                         <View style={styles.inputView}>
-                            <TextInput style={{width: '80%'}}
+                            <TextInput style={{ width: '80%' }}
                                 placeholder="Password"
-                                secureTextEntry = {true}
+                                secureTextEntry={true}
                             />
-                            <IcIcon style={{marginRight: 10,}} name={'user'} size={26} color={Color.orange} />
+                            <IcIcon style={{ marginRight: 10, }} name={'user'} size={26} color={Color.orange} />
                         </View>
                         <TouchableOpacity onPress={() => { this.props.navigation.navigate('#') }} style={styles.checkoutView}>
                             <Text style={styles.checkout}>Connector</Text>
                         </TouchableOpacity>
+                        <View style={{ marginLeft: wp('40%'), marginBottom: 10, }}>
+                            <CheckBox
+                                style={{}}
+                                checkBoxColor={'#38059F'}
+                                onClick={() => {
+                                    this.setState({
+                                        isChecked: !this.state.isChecked
+                                    })
+                                }}
+                                isChecked={this.state.isChecked}
+                                rightText={"Se Souvennir Moi"}
+                            />
+                        </View>
                     </View>
                 </ScrollView>
             </View>
@@ -55,7 +70,7 @@ const styles = StyleSheet.create({
         backgroundColor: Color.white,
     },
     title: { alignSelf: 'center', fontSize: 25, marginTop: 15, color: Color.white, fontWeight: '600' },
-    inputView:{
+    inputView: {
         borderWidth: 2,
         borderColor: Color.greyPrimray,
         flexDirection: 'row',
