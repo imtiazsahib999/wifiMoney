@@ -7,7 +7,7 @@ import profile from './../component/profile';
 import comment from './../component/comment';
 import espace from './../component/espace';
 import ruizLive from './../component/ruizLive';
-import slide from './../component/slide';
+import slide from './../component/slider';
 import customButtomTab from './../component/customButtomTab';
 
 

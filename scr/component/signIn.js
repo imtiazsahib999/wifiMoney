@@ -12,11 +12,12 @@ export default class signIn extends Component {
     render() {
         return (
 
+
             <View style={styles.signinContainer}>
-                    <View style={{ marginLeft: '1%', }}>
-                        <IcIcon style={{}} name={'keyboard-arrow-left'} size={40} color="#000"
-                            onPress={() => this.props.navigation.goBack()} />
-                    </View>
+                <View style={{ marginLeft: '1%', }}>
+                    <IcIcon style={{}} name={'keyboard-arrow-left'} size={40} color="#000"
+                        onPress={() => this.props.navigation.goBack()} />
+                </View>
                 <ScrollView>
 
                     <View style={styles.helloview}>
@@ -25,7 +26,7 @@ export default class signIn extends Component {
                         <View style={{ marginHorizontal: '5%', }}>
                             <TextInput style={{}}
                                 autoCompleteType="email"
-                                autoCapitalize = 'none'
+                                autoCapitalize='none'
                                 keyboardType="email-address"
                                 placeholder="Email"
                                 underlineColorAndroid={Color.greyPrimray}
@@ -44,14 +45,12 @@ export default class signIn extends Component {
                     </View>
                 </ScrollView>
 
-                        <View style={{marginVertical: '2%',}}>
-                            <TouchableOpacity style={styles.touchableopacity}
-                                onPress={() => this.props.navigation.navigate('tab')}>
-                                <Text style={styles.textopacity}>CONTINUE</Text>
-                            </TouchableOpacity>
-                        </View>
-
-
+                <View style={{ marginVertical: '2%', }}>
+                    <TouchableOpacity style={styles.touchableopacity}
+                        onPress={() => this.props.navigation.navigate('tab')}>
+                        <Text style={styles.textopacity}>CONTINUE</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
 
         );
@@ -64,7 +63,7 @@ const styles = StyleSheet.create({
         backgroundColor: Color.homebackroundColor,
     },
     helloview: {
-flex: 1
+        flex: 1
     },
     hellotext: {
         marginLeft: '5%',

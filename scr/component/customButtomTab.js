@@ -10,7 +10,7 @@ import Profile_Tab from './profile';
 import RuizLive_Tab from './ruizLive';
 import Comment_Tab from './comment';
 import Espace_Tab from './espace';
-import Slide_Tab from './slide';
+import Slide_Tab from './slider';
 
 export default class customButtomTab extends Component {
     constructor(props) {
@@ -79,6 +79,7 @@ export default class customButtomTab extends Component {
                                     color: this.state.ruizLive ? '#F49509' : '#fff',
                                     fontSize: 15,
                                     width: wp('10%'),
+                                    textAlign: 'center'
 
                                 }}>Ruiz Live</Text>
                             </TouchableOpacity>
@@ -94,7 +95,7 @@ export default class customButtomTab extends Component {
                                     color: this.state.comment ? '#F49509' : '#fff',
                                     fontSize: 15,
                                     width: wp('22%'),
-                                    alignSelf: 'center'
+                                    textAlign: 'center'
 
                                 }}>Comment nous rejoinder?</Text>
                             </TouchableOpacity>
@@ -109,7 +110,7 @@ export default class customButtomTab extends Component {
                                 <Text style={{
                                     color: this.state.espace ? '#F49509' : '#fff',
                                     fontSize: 15,
-                                    alignSelf: 'center',
+                                    textAlign: 'center',
                                     width: wp('19%'),
 
                                 }}>Espace VIP</Text>

@@ -23,8 +23,8 @@ export default class splash extends Component {
             <View style={styles.welcomeContainer}>
                 <ScrollView>
                     <ImageBackground style={styles.imagebakground}
-                        source={require('./../image/back.png')} resizeMode={'stretch'} >
-                            <Image source = {require('./../image/ball.png')} resizeMode = 'stretch' style={{width: 150, height: 150}} />
+                        source={require('./../image/splash.png')} resizeMode={'stretch'} >
+                            <Image source = {require('./../image/logo.png')} resizeMode = 'stretch' style={{width: 200, height: 200}} />
                     </ImageBackground>  
                 </ScrollView>
             </View>

@@ -3,7 +3,6 @@ import { View, StatusBar, ScrollView, ImageBackground, Dimensions, Image, Text, 
 import Color from './../constant/color';
 import { TextInput } from 'react-native-gesture-handler';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import IcIcon from 'react-native-vector-icons/MaterialIcons'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -16,7 +15,6 @@ export default class ruizLive extends Component {
     }
     render() {
         return (
-
             <View style={styles.signinContainer}>
                 <ScrollView>
               <ImageBackground source = {require('./../image/back1.png')} style={{ height: 80}} resizeMode = 'stretch' >
