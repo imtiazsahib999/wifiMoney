@@ -9,22 +9,19 @@ const windowHeight = Dimensions.get('window').height;
 import Firebase from './firebase';
 
 
-export default class postData extends Component {
+export default class updatePrediction extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            predict: ''
+            predict: '',
+            image: this.props.navigation.getParam('TEXT'),
+            key: this.props.navigation.getParam('KEY'),
         };
+        console.warn(this.state.image);
     }
-    addPrediction(){
+    async updateItem(key){
         const {predict} = this.state
-        const db = Firebase.database().ref('addPredict/')
-        db.push({
-            prediction: predict
-        })
-        this.setState({
-            predict: ''
-        })
+        await Firebase.database().ref(`addPredict/${key}`).update({prediction: predict})
     }
 
     render() {
@@ -46,8 +43,8 @@ export default class postData extends Component {
                             onChangeText={predict => this.setState({ predict })}
                         />
                         <TouchableOpacity style={styles.checkoutView}
-                            onPress={() => this.addPrediction()}>
-                            <Text style={styles.checkout}>Submit</Text>
+                            onPress={() => this.updateItem(this.state.key)}>
+                            <Text style={styles.checkout}>Updated</Text>
                         </TouchableOpacity>
                     </View>
                 </ScrollView>

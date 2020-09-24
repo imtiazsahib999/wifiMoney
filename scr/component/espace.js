@@ -7,7 +7,8 @@ import IcIcon from 'react-native-vector-icons/FontAwesome'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import CheckBox from 'react-native-check-box'
-import firebase from 'firebase';
+// import firebase from 'firebase';
+import Firebase from './firebase';
 
 export default class espace extends Component {
     constructor(props) {
@@ -22,20 +23,20 @@ export default class espace extends Component {
         };
     }
     componentDidMount(){
-        var firebaseConfig = {
-            apiKey: "AIzaSyAuyC7Q8ZjOX9MyLAj039tCjPp1_o2PAgk",
-            authDomain: "wifimoney-22c2d.firebaseapp.com",
-            databaseURL: "https://wifimoney-22c2d.firebaseio.com",
-            projectId: "wifimoney-22c2d",
-            storageBucket: "wifimoney-22c2d.appspot.com",
-            messagingSenderId: "840583192651",
-            appId: "1:840583192651:web:64867f81e99455988c2dce",
-            measurementId: "G-DD2XWN6ZNF"
-          };
-          // Initialize Firebase
-          firebase.initializeApp(firebaseConfig);
+        // var firebaseConfig = {
+        //     apiKey: "AIzaSyAuyC7Q8ZjOX9MyLAj039tCjPp1_o2PAgk",
+        //     authDomain: "wifimoney-22c2d.firebaseapp.com",
+        //     databaseURL: "https://wifimoney-22c2d.firebaseio.com",
+        //     projectId: "wifimoney-22c2d",
+        //     storageBucket: "wifimoney-22c2d.appspot.com",
+        //     messagingSenderId: "840583192651",
+        //     appId: "1:840583192651:web:64867f81e99455988c2dce",
+        //     measurementId: "G-DD2XWN6ZNF"
+        //   };
+        //   // Initialize Firebase
+        //   firebase.initializeApp(firebaseConfig);
 
-          firebase.auth().onAuthStateChanged(user =>{
+          Firebase.auth().onAuthStateChanged(user =>{
               if(user){
                   this.setState({islogged: true})
               }
@@ -55,7 +56,7 @@ export default class espace extends Component {
             return;
         }
         else{
-            firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+            Firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
             .then(this.onLoginSuccess)
             .catch(err =>{
             alert("Email or Password Incorrect");

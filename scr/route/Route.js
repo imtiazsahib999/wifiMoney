@@ -9,6 +9,7 @@ import espace from './../component/espace';
 import ruizLive from './../component/ruizLive';
 import slide from './../component/slider';
 import postData from './../component/postData';
+import updatePrediction from './../component/updatePrediction';
 import postDataPrediction from './../component/postDataPrediction';
 import eventPost from './../component/eventPost';
 import customButtomTab from './../component/customButtomTab';
@@ -24,6 +25,12 @@ const Route =  createStackNavigator({
     },
     signIn: {
         screen: signIn,
+        navigationOptions: {
+            headerShown: false
+        },
+    },
+    updatePrediction: {
+        screen: updatePrediction,
         navigationOptions: {
             headerShown: false
         },
