@@ -7,15 +7,73 @@ import IcIcon from 'react-native-vector-icons/FontAwesome'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import CheckBox from 'react-native-check-box'
+import firebase from 'firebase';
 
 export default class espace extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isSelected: false,
-
+            islogged: null,
+            email: '',
+            password: '',
+            loding: false,
+            error: ''
         };
     }
+    componentDidMount(){
+        var firebaseConfig = {
+            apiKey: "AIzaSyAuyC7Q8ZjOX9MyLAj039tCjPp1_o2PAgk",
+            authDomain: "wifimoney-22c2d.firebaseapp.com",
+            databaseURL: "https://wifimoney-22c2d.firebaseio.com",
+            projectId: "wifimoney-22c2d",
+            storageBucket: "wifimoney-22c2d.appspot.com",
+            messagingSenderId: "840583192651",
+            appId: "1:840583192651:web:64867f81e99455988c2dce",
+            measurementId: "G-DD2XWN6ZNF"
+          };
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+
+          firebase.auth().onAuthStateChanged(user =>{
+              if(user){
+                  this.setState({islogged: true})
+              }
+              else{
+                  this.setState({islogged: false})
+              }
+          })
+    }
+
+    onLogin = () =>{
+        if (this.state.email === '') {
+            alert("Please Enter Your Email");
+            return;
+        }
+        else if (this.state.password === '') {
+            alert("Please Enter Your Password");
+            return;
+        }
+        else{
+            firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+            .then(this.onLoginSuccess)
+            .catch(err =>{
+            alert("Email or Password Incorrect");
+                this.setState({
+                    error: err.message
+                })
+            })
+        }
+       
+    }
+    onLoginSuccess = () => {
+        this.setState({
+            error: '',
+            loding: false
+        })
+        { this.props.navigation.navigate('customTopTab')}
+    }
+
     render() {
         return (
 
@@ -30,6 +88,8 @@ export default class espace extends Component {
                         <View style={styles.inputView}>
                             <TextInput style={{ width: '80%' }}
                                 placeholder="Username"
+                                value={this.state.email}
+                                onChangeText={email => this.setState({ email })}
                             />
                             <IcIcon style={{ marginRight: 10, }} name={'user'} size={26} color={Color.orange} />
                         </View>
@@ -37,12 +97,15 @@ export default class espace extends Component {
                             <TextInput style={{ width: '80%' }}
                                 placeholder="Password"
                                 secureTextEntry={true}
+                                value={this.state.password}
+                                onChangeText={password => this.setState({ password })}
                             />
                             <IcIcon style={{ marginRight: 10, }} name={'user'} size={26} color={Color.orange} />
                         </View>
-                        <TouchableOpacity onPress={() => { this.props.navigation.navigate('#') }} style={styles.checkoutView}>
+                        <TouchableOpacity onPress={() => { this.onLogin() }} style={styles.checkoutView}>
                             <Text style={styles.checkout}>Connector</Text>
                         </TouchableOpacity>
+
                         <View style={{ marginLeft: wp('40%'), marginBottom: 10, }}>
                             <CheckBox
                                 style={{}}

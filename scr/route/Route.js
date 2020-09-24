@@ -8,7 +8,11 @@ import comment from './../component/comment';
 import espace from './../component/espace';
 import ruizLive from './../component/ruizLive';
 import slide from './../component/slider';
+import postData from './../component/postData';
+import postDataPrediction from './../component/postDataPrediction';
+import eventPost from './../component/eventPost';
 import customButtomTab from './../component/customButtomTab';
+import customTopTab from './../component/CustomTopTab';
 
 
 const Route =  createStackNavigator({
@@ -56,6 +60,30 @@ const Route =  createStackNavigator({
     },
     customButtomTab: {
         screen: customButtomTab,
+        navigationOptions: {
+            headerShown: false
+        },
+    },
+    customTopTab: {
+        screen: customTopTab,
+        navigationOptions: {
+            headerShown: false
+        },
+    },
+    postData: {
+        screen: postData,
+        navigationOptions: {
+            headerShown: false
+        },
+    },
+    postDataPrediction: {
+        screen: postDataPrediction,
+        navigationOptions: {
+            headerShown: false
+        },
+    },
+    eventPost: {
+        screen: eventPost,
         navigationOptions: {
             headerShown: false
         },
