@@ -35,30 +35,6 @@ export default class prediction extends Component {
         })
     }
 
-    // deleteItem(key){
-    //     Firebase.database().ref(`addPredict/${key}`).remove()
-    // }
-    // async updateItem(key){
-    //     await Firebase.database().ref('addPredict/').child(key).update({key: key})
-    //     this.addUpdated()
-    // }
-
-    // addUpdated(){
-    //     const db = Firebase.database().ref('addPredict/')
-    //    db.once('value', (snapshot) => {
-    //         var li = []
-    //         snapshot.forEach((child) => {
-    //             li.push({
-    //                 key: child.key,
-    //                 text: child.val().prediction,
-    //             })
-    //         })
-    //         console.warn(this.state.imagesMost);
-    //         this.setState({ imagesMost: li })
-    //     })
-    // }
-
-
     renderRow = ({ item }) => {
         return (
             <View style={{ flexDirection: 'row', marginTop: 10, padding: 5, justifyContent: 'space-between', backgroundColor: Color.greyAccent }}>
