@@ -9,6 +9,8 @@ const windowHeight = Dimensions.get('window').height;
 // import ImagePicker from 'react-native-image-crop-picker';
 import ImagePicker from 'react-native-image-picker'
 import Firebase from './firebase';
+import UUIDGenerator from 'react-native-uuid-generator';
+
 
 export default class postDataPrediction extends Component {
     constructor(props) {
@@ -16,58 +18,58 @@ export default class postDataPrediction extends Component {
         this.state = {
             // Picture: ''
             photo: null,
+            imageId: ''
         };
-        // this.choosePhoto = this.choosePhoto.bind(this)
     }
-    // takePhoto() {
-    //     ImagePicker.openCamera({
-    //         width: 300,
-    //         height: 400,
-    //         cropping: true,
-    //       }).then(image => {
-    //         console.log(image);
-    //       });
-    // }
-    // choosePhoto() {
-    //     ImagePicker.openPicker({
-    //         width: 300,
-    //         height: 400,
-    //         cropping: true,
-    //         mediaType: 'photo'
-
-    //     }).then(image => {
-    //         console.log(image.path);
-    //     });
-    // }
 
     handleChoosePhoto = () => {
         const options = {
             noData: true,
         }
         ImagePicker.launchImageLibrary(options, response => {
+            console.log('res', response);
             if (response.uri) {
-                console.log("uri",response.uri);
-                this.setState({ photo: response })
-                this.uploadImage(response.uri, "image name")
-                .then(() => {
-                    Alert.alert('success')
-                })
-                .catch((error) =>{
-                    Alert.alert('Error:', error.message)
+                UUIDGenerator.getRandomUUID((uuid) => {
+                    console.log("uri",response.uri,"id", uuid);
+                    // this.uploadImage(response.uri, uuid)
+                    const Url = response.uri
+                    this.addPrediction(Url)
+                    this.setState({
+                        photo: response,
+                    })
+
                 })
             }
         })
     }
-    uploadImage = async (uri) =>{
+
+    uploadImage = async (uri, imageId) => {
         const response = await fetch(uri)
         const blob = await response.blob()
-        const db = Firebase.storage().ref('images/')
+        const db = Firebase.storage().ref('images/'+ imageId)
         return db.put(blob)
+
+    }
+    addPrediction(uri){
+        // const {predict} = this.state
+        const db = Firebase.database().ref('image/')
+        db.push({
+            imageUrl: uri
+        })
+
+        // var storage = Firebase.storage().ref()
+        // storage.child('imageUpload/').put(uri,{
+
+        // }).then(() =>{
+        //     Firebase.database().ref('NewProduct/').push({
+        //         imageUrl: uri+uuid
+        //     })
+        // })
         
     }
-
+    
     render() {
-        const {photo} = this.state
+        const { photo, imageId } = this.state
         return (
             <View style={styles.signinContainer}>
                 <View style={{ height: hp('9%'), }}>
@@ -90,7 +92,7 @@ export default class postDataPrediction extends Component {
                             <Text style={styles.test}>Select Image</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.checkoutView}
-                            onPress={() => this.props.navigation.navigate('#')}>
+                            onPress={() => {this.props.navigation.navigate('eventPost')}}>
                             <Text style={styles.checkout}>Submit</Text>
                         </TouchableOpacity>
                     </View>
