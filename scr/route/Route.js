@@ -12,6 +12,7 @@ import postData from './../component/postData';
 import updatePrediction from './../component/updatePrediction';
 import postDataPrediction from './../component/postDataPrediction';
 import eventPost from './../component/eventPost';
+import prediction from './../component/prediction';
 import customButtomTab from './../component/customButtomTab';
 import customTopTab from './../component/CustomTopTab';
 
@@ -31,6 +32,12 @@ const Route =  createStackNavigator({
     },
     updatePrediction: {
         screen: updatePrediction,
+        navigationOptions: {
+            headerShown: false
+        },
+    },
+    prediction: {
+        screen: prediction,
         navigationOptions: {
             headerShown: false
         },

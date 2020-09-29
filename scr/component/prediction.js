@@ -37,6 +37,8 @@ export default class prediction extends Component {
     deleteItem(key){
         Firebase.database().ref(`addPredict/${key}`).remove()
     }
+
+    
     renderRow = ({ item }) => {
         return (
             <View style={{ flexDirection: 'row', marginTop: 10, padding: 5, justifyContent: 'space-between', backgroundColor: Color.greyAccent }}>

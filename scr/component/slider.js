@@ -6,6 +6,8 @@ import Football from 'react-native-vector-icons/Ionicons';
 import Color from './../constant/color';
 const Height = Dimensions.get("window").height
 const Wight = Dimensions.get("window").wight
+import Firebase from './firebase';
+
 export default class slider extends Component {
     constructor(props) {
         super(props);
@@ -17,7 +19,24 @@ export default class slider extends Component {
                 { image: require('./../image/back.jpg'), text: 'November 2019' }
             ],
             currentIndex: 0,
+            imagesMost: [],
+
         };
+    }
+    componentDidMount() {
+        const {imagesMost} = this.state
+        const db = Firebase.database().ref('image/')
+        db.on('value', (snapshot) => {
+            snapshot.forEach((child) => {
+                imagesMost.push({
+                    key: child.key,
+                    url: child.val().imageUrl,
+                })
+            })
+            console.log("state",this.state.imagesMost);
+            // this.setState({ imagesMost: li })
+
+        })
     }
 
     // Handled swipe position change
@@ -29,54 +48,61 @@ export default class slider extends Component {
     // Render Rows
     renderImageSwipeItem = item => {
         return (
-            <ImageBackground style={{ height: '100%', marginTop: '10%', marginHorizontal: '5%', }} source={item.image} resizeMode='cover'>
-                <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
-                    <View></View>
-                    <View style={{ backgroundColor: 'orange', width: '60%' }}>
-                        <Text style={{ fontSize: 20, color: '#fff', alignSelf: 'center' }} >{item.text}</Text>
-                    </View>
-                </View>
-                <View>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: '5%' }}>
-                        <Football name='football' size={20} color={'#fff'} />
-                        <Text style={{ color: '#fff', fontSize: 20, marginLeft: 5 }}>Football </Text>
-                    </View>
-                    <View style={styles.tenniusView}>
-                        <Image style={styles.tennisView} source={require('./../image/images1.png')} />
-                        <Image style={styles.tennisView} source={require('./../image/images1.png')} />
-                        <Image style={styles.tennisView} source={require('./../image/images1.png')} />
-                        <Image style={styles.tennisView} source={require('./../image/images1.png')} />
-                        <Image style={styles.tennisView} source={require('./../image/images1.png')} />
-                        <Image style={styles.tennisView} source={require('./../image/images1.png')} />
-                    </View>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: '5%' }}>
-                        <Football name='football' size={20} color={'#fff'} />
-                        <Text style={{ color: '#fff', fontSize: 20, marginLeft: 5 }}>Tennis </Text>
-                    </View>
-                    <View style={styles.tenniusView}>
-                        <Image style={styles.tennisView} source={require('./../image/images1.png')} />
-                        <Image style={styles.tennisView} source={require('./../image/images1.png')} />
-                        <Image style={styles.tennisView} source={require('./../image/images1.png')} />
-                        <Image style={styles.tennisView} source={require('./../image/images1.png')} />
-                        <Image style={styles.tennisView} source={require('./../image/images1.png')} />
-                        <Image style={styles.tennisView} source={require('./../image/images1.png')} />
-                    </View>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: '5%' }}>
-                        <Football name='football' size={20} color={'#fff'} />
-                        <Text style={{ color: '#fff', fontSize: 20, marginLeft: 5 }}>Autres </Text>
-                    </View>
-                    <View style={styles.tenniusView}>
-                        <Image style={styles.tennisView} source={require('./../image/images1.png')} />
-                        <Image style={styles.tennisView} source={require('./../image/images1.png')} />
-                        <Image style={styles.tennisView} source={require('./../image/images1.png')} />
-                        <Image style={styles.tennisView} source={require('./../image/images1.png')} />
-                        <Image style={styles.tennisView} source={require('./../image/images1.png')} />
-                        <Image style={styles.tennisView} source={require('./../image/images1.png')} />
-                    </View>
-                </View>
-            </ImageBackground>
+            <View style={{ width: '100%', }}>
+                <ImageBackground style={{ height: 300, marginTop: '10%', marginHorizontal: '5%', }} source={{ uri: item.url }} resizeMode='stretch'>
+                  
+                </ImageBackground>
+            </View>
         );
     };
+
+    // ################## silder #######################
+    //     <ImageBackground style={{ height: '100%', marginTop: '10%', marginHorizontal: '5%', }} source={{ uri: item.url }} resizeMode='cover'>
+    //     <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
+    //         <View></View>
+    //         <View style={{ backgroundColor: 'orange', width: '60%' }}>
+    //             <Text style={{ fontSize: 20, color: '#fff', alignSelf: 'center' }} >{item.text}</Text>
+    //         </View>
+    //     </View>
+    //     <View>
+    //         <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: '5%' }}>
+    //             <Football name='football' size={20} color={'#fff'} />
+    //             <Text style={{ color: '#fff', fontSize: 20, marginLeft: 5 }}>Football </Text>
+    //         </View>
+    //         <View style={styles.tenniusView}>
+    //             <Image style={styles.tennisView} source={require('./../image/images1.png')} />
+    //             <Image style={styles.tennisView} source={require('./../image/images1.png')} />
+    //             <Image style={styles.tennisView} source={require('./../image/images1.png')} />
+    //             <Image style={styles.tennisView} source={require('./../image/images1.png')} />
+    //             <Image style={styles.tennisView} source={require('./../image/images1.png')} />
+    //             <Image style={styles.tennisView} source={require('./../image/images1.png')} />
+    //         </View>
+    //         <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: '5%' }}>
+    //             <Football name='football' size={20} color={'#fff'} />
+    //             <Text style={{ color: '#fff', fontSize: 20, marginLeft: 5 }}>Tennis </Text>
+    //         </View>
+    //         <View style={styles.tenniusView}>
+    //             <Image style={styles.tennisView} source={require('./../image/images1.png')} />
+    //             <Image style={styles.tennisView} source={require('./../image/images1.png')} />
+    //             <Image style={styles.tennisView} source={require('./../image/images1.png')} />
+    //             <Image style={styles.tennisView} source={require('./../image/images1.png')} />
+    //             <Image style={styles.tennisView} source={require('./../image/images1.png')} />
+    //             <Image style={styles.tennisView} source={require('./../image/images1.png')} />
+    //         </View>
+    //         <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: '5%' }}>
+    //             <Football name='football' size={20} color={'#fff'} />
+    //             <Text style={{ color: '#fff', fontSize: 20, marginLeft: 5 }}>Autres </Text>
+    //         </View>
+    //         <View style={styles.tenniusView}>
+    //             <Image style={styles.tennisView} source={require('./../image/images1.png')} />
+    //             <Image style={styles.tennisView} source={require('./../image/images1.png')} />
+    //             <Image style={styles.tennisView} source={require('./../image/images1.png')} />
+    //             <Image style={styles.tennisView} source={require('./../image/images1.png')} />
+    //             <Image style={styles.tennisView} source={require('./../image/images1.png')} />
+    //             <Image style={styles.tennisView} source={require('./../image/images1.png')} />
+    //         </View>
+    //     </View>
+    // </ImageBackground>
     render() {
         return (
             <View style={styles.container}>
@@ -87,7 +113,7 @@ export default class slider extends Component {
                     <Swiper
                         // style={{ flex: 1 }}
                         currentSelectIndex={0}
-                        swipeData={this.state.imgArray}
+                        swipeData={this.state.imagesMost}
                         renderSwipeItem={this.renderImageSwipeItem}
                         onScreenChange={this.screenChange}
                     />

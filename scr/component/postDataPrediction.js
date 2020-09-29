@@ -25,57 +25,46 @@ export default class postDataPrediction extends Component {
     handleChoosePhoto = () => {
         const options = {
             noData: true,
+            // mediaType: 'photo',
         }
         ImagePicker.launchImageLibrary(options, response => {
-            console.log('res', response);
+            // console.log('res', response);
             if (response.uri) {
-                UUIDGenerator.getRandomUUID((uuid) => {
-                    console.log("uri",response.uri,"id", uuid);
-                    // this.uploadImage(response.uri, uuid)
+                // UUIDGenerator.getRandomUUID((uuid) => {
+                    // console.log("uri",response.uri,);
                     const Url = response.uri
                     this.addPrediction(Url)
                     this.setState({
                         photo: response,
                     })
 
-                })
+                // })
             }
         })
     }
 
-    uploadImage = async (uri, imageId) => {
-        const response = await fetch(uri)
-        const blob = await response.blob()
-        const db = Firebase.storage().ref('images/'+ imageId)
-        return db.put(blob)
+    // uploadImage = async (uri, imageId) => {
+    //     const response = await fetch(uri)
+    //     const blob = await response.blob()
+    //     const db = Firebase.storage().ref('images/'+ imageId)
+    //     return db.put(blob)
 
-    }
+    // }
     addPrediction(uri){
-        // const {predict} = this.state
         const db = Firebase.database().ref('image/')
         db.push({
             imageUrl: uri
         })
-
-        // var storage = Firebase.storage().ref()
-        // storage.child('imageUpload/').put(uri,{
-
-        // }).then(() =>{
-        //     Firebase.database().ref('NewProduct/').push({
-        //         imageUrl: uri+uuid
-        //     })
-        // })
-        
+        {  this.props.navigation.navigate('customTopTab')}
     }
     
     render() {
-        const { photo, imageId } = this.state
+        const { photo } = this.state
         return (
             <View style={styles.signinContainer}>
                 <View style={{ height: hp('9%'), }}>
                     <View style={{ marginTop: hp('2%'), }}>
                         <IcIcon onPress={() => this.props.navigation.goBack()} style={{ marginLeft: wp('0%'), }} name={'keyboard-arrow-left'} size={40} color="#000" />
-
                     </View>
                 </View>
                 <ScrollView>
@@ -84,17 +73,18 @@ export default class postDataPrediction extends Component {
                         {photo && (
                             <Image
                                 source={{ uri: photo.uri }}
-                                style={{ width: 300, height: 300 }}
-                            />
+                                style={{ width: 300, height: 300 }}/>
                         )}
                         <TouchableOpacity style={styles.checkoutView1}
                             onPress={() => this.handleChoosePhoto()}>
-                            <Text style={styles.test}>Select Image</Text>
+                            <Text style={styles.test}>Upload Image</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.checkoutView}
-                            onPress={() => {this.props.navigation.navigate('eventPost')}}>
+                        {/* {photo && (
+                            <TouchableOpacity style={styles.checkoutView}
+                            onPress={() => {this.props.navigation.navigate('#')}}>
                             <Text style={styles.checkout}>Submit</Text>
                         </TouchableOpacity>
+                        )} */}
                     </View>
                 </ScrollView>
             </View>

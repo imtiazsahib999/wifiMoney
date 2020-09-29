@@ -22,6 +22,8 @@ export default class updatePrediction extends Component {
     async updateItem(key){
         const {predict} = this.state
         await Firebase.database().ref(`addPredict/${key}`).update({prediction: predict})
+        {  this.props.navigation.navigate('customTopTab')}
+
     }
 
     render() {

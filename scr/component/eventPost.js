@@ -3,8 +3,6 @@ import { View, StatusBar, ScrollView, ImageBackground, FlatList, Dimensions, Ima
 import Color from './../constant/color';
 import { TextInput } from 'react-native-gesture-handler';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import IcIcon from 'react-native-vector-icons/MaterialIcons'
-import Edit from 'react-native-vector-icons/MaterialIcons'
 import Delete from 'react-native-vector-icons/MaterialIcons'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -16,32 +14,33 @@ export default class eventPost extends Component {
         this.state = {
             imagesMost: [],
             col: 2,
-            postal: [],
-            profileImageUrl: '',
         };
     }
     componentDidMount() {
         const db = Firebase.database().ref('image/')
         db.on('value', (snapshot) => {
-            var li = []
+            const li = []
             snapshot.forEach((child) => {
                 li.push({
                     key: child.key,
                     url: child.val().imageUrl,
                 })
             })
-            console.warn(this.state.imagesMost);
             this.setState({ imagesMost: li })
+            console.log("corrent", li);
+
         })
     }
-    deleteItem(key){
+    deleteItem(key) {
         Firebase.database().ref(`image/${key}`).remove()
     }
     renderRow = ({ item }) => {
+        console.log("state", item);
         return (
             <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: 'space-between', backgroundColor: Color.greyAccent }}>
-                <Image source={{uri: item.url}} style={{ width: 70, height: 70, }} resizeMode='stretch' />
+                <Image source={{ uri: item.url }} style={{ width: 70, height: 70, }} resizeMode='stretch' />
                 <View style={{ marginRight: 10, justifyContent: 'center' }}>
+                    <Text>{item.key}</Text>
                     {/* <Edit onPress={() => { }} style={{ marginLeft: wp('0%'), }} name={item.edit} size={26} color="#000" /> */}
                     <Delete onPress={() => { this.deleteItem(item.key) }} style={{ marginTop: wp('0%'), }} name={'delete'} size={26} color="#000" />
                 </View>

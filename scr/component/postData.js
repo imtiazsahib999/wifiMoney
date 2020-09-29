@@ -23,8 +23,10 @@ export default class postData extends Component {
             prediction: predict
         })
         this.setState({
-            predict: ''
+            predict: '',
         })
+        {  this.props.navigation.navigate('customTopTab')}
+
     }
 
     render() {
@@ -46,7 +48,7 @@ export default class postData extends Component {
                             onChangeText={predict => this.setState({ predict })}
                         />
                         <TouchableOpacity style={styles.checkoutView}
-                            onPress={() => this.addPrediction()}>
+                            onPress={() => {this.addPrediction()}}>
                             <Text style={styles.checkout}>Submit</Text>
                         </TouchableOpacity>
                     </View>
