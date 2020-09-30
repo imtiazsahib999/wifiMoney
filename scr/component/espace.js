@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StatusBar, ScrollView, ImageBackground, Dimensions, Image, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StatusBar, ScrollView, ImageBackground, Dimensions, Image, Text, Button, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import Color from './../constant/color';
 import { TextInput } from 'react-native-gesture-handler';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -9,63 +9,63 @@ const windowHeight = Dimensions.get('window').height;
 import CheckBox from 'react-native-check-box'
 // import firebase from 'firebase';
 import Firebase from './firebase';
+import { connect } from 'react-redux'
+import { loginUser } from './../store/action/loginAction'
 
-export default class espace extends Component {
+class espace extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isSelected: false,
-            islogged: null,
             email: '',
             password: '',
-            loding: false,
-            error: ''
+            errors: {},
+
         };
     }
-    componentDidMount(){
-          Firebase.auth().onAuthStateChanged(user =>{
-              if(user){
-                  this.setState({islogged: true})
-              }
-              else{
-                  this.setState({islogged: false})
-              }
-          })
-    }
 
-    onLogin = () =>{
-        if (this.state.email === '') {
-            alert("Please Enter Your Email");
-            return;
-        }
-        else if (this.state.password === '') {
-            alert("Please Enter Your Password");
-            return;
-        }
-        else{
-            Firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-            .then(this.onLoginSuccess)
-            .catch(err =>{
-            // alert("Email or Password Incorrect");
-            alert(err)
-                this.setState({
-                    error: err.message
-                })
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.isSignIn === '1') {
+            this.setState({
+                email: '',
+                password: '',
+                errors: {},
             })
+            this.props.navigation.navigate('customTopTab')
         }
-       
-    }
-    onLoginSuccess = () => {
-        this.setState({
-            error: '',
-            loding: false
-        })
-        { this.props.navigation.navigate('customTopTab')}
+        else if (nextProps.isSignInError) {
+            if (nextProps.signInError.code === 'auth/invalid-email') {
+                // Alert.alert('The email address is badly formatted.')
+                this.setState({
+                    errors: {
+                        email: 'The email address is badly formatted.'
+                    }
+                })
+            } else if (nextProps.signInError.code === 'auth/user-disabled') {
+                this.setState({
+                    errors: {
+                        email: 'This User is disabled'
+                    }
+                })
+            } else if (nextProps.signInError.code === 'auth/user-not-found') {
+                this.setState({
+                    errors: {
+                        email: "The email address that you've entered doesn't match any account."
+                    }
+                })
+            } else if (nextProps.signInError.code === 'auth/wrong-password') {
+                this.setState({
+                    errors: {
+                        password: "Password is incorrect"
+                    }
+                })
+            }
+        }
     }
 
     render() {
-        return (
+        const { errors } = this.state
 
+        return (
             <View style={styles.signinContainer}>
                 <ScrollView>
                     <ImageBackground source={require('./../image/back1.png')} style={{ height: 80 }} resizeMode='stretch' >
@@ -82,6 +82,11 @@ export default class espace extends Component {
                             />
                             <IcIcon style={{ marginRight: 10, }} name={'user'} size={26} color={Color.orange} />
                         </View>
+                        {errors.email && (
+                            <Text style={styles.errorTextStyle}>
+                                {errors.email}
+                            </Text>
+                        )}
                         <View style={styles.inputView}>
                             <TextInput style={{ width: '80%' }}
                                 placeholder="Password"
@@ -89,9 +94,14 @@ export default class espace extends Component {
                                 value={this.state.password}
                                 onChangeText={password => this.setState({ password })}
                             />
-                            <IcIcon style={{ marginRight: 10, }} name={'user'} size={26} color={Color.orange} />
+                            <IcIcon style={{ marginRight: 10, }} name={'lock'} size={26} color={Color.orange} />
                         </View>
-                        <TouchableOpacity onPress={() => { this.onLogin() }} style={styles.checkoutView}>
+                        {errors.password && (
+                            <Text style={styles.errorTextStyle}>
+                                {errors.password}
+                            </Text>
+                        )}
+                        <TouchableOpacity onPress={() => { this.props.userLogin(this.state.email, this.state.password, this.state.errors) }} style={styles.checkoutView}>
                             <Text style={styles.checkout}>Connector</Text>
                         </TouchableOpacity>
 
@@ -116,6 +126,19 @@ export default class espace extends Component {
 
     }
 }
+const mapStateToProps = state => ({
+    isSignIn: state.auth.isLogin,
+    isSignInError: state.auth.isSignInError,
+    // signInLoading: state.auth.signInLoading,
+    signInError: state.auth.signInError
+})
+
+const mapDispatchToProps = dispatch => ({
+    userLogin: (email, password, error) => dispatch(loginUser(email, password, error)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(espace)
+
 const styles = StyleSheet.create({
     signinContainer: {
         flex: 1,
@@ -143,7 +166,13 @@ const styles = StyleSheet.create({
     checkout: {
         color: '#fff',
         fontWeight: '700'
-    }
-
+    },
+    errorTextStyle: {
+        fontSize: 12,
+        color: '#F53107',
+        opacity: 0.5,
+        fontFamily: "Montserrat-Regular",
+        marginHorizontal: '5%',
+    },
 
 })

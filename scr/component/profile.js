@@ -70,12 +70,10 @@ export default class profile extends Component {
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 15, }}>
                             <TouchableOpacity onPress={this.onShareFacebook} style={[styles.Facebook, { backgroundColor: '#3B5998' }]}>
-                                <Facebook style={{}} name={'facebook-f'} size={24} color="#fff"
-                                    onPress={() => this.props.navigation.navigate('#')} />
+                                <Facebook style={{}} name={'facebook-f'} size={24} color="#fff"/>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={this.onShareSnapchat} style={[styles.Facebook, { backgroundColor: '#FFFC00' }]}>
-                                <Snapchat style={{}} name={'snapchat-ghost'} size={24} color="#fff"
-                                    onPress={() => this.props.navigation.navigate('#')} />
+                                <Snapchat style={{}} name={'snapchat-ghost'} size={24} color="#fff" />
                             </TouchableOpacity>
                             <TouchableOpacity onPress={this.onShareTwitter} style={[styles.Facebook, { backgroundColor: '#55ACEE' }]}>
                                 <Twite style={{}} name={'twitter'} size={24} color="#fff"/>

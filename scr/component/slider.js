@@ -7,8 +7,9 @@ import Color from './../constant/color';
 const Height = Dimensions.get("window").height
 const Wight = Dimensions.get("window").wight
 import Firebase from './firebase';
+import { connect } from 'react-redux'
 
-export default class slider extends Component {
+class slider extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -121,7 +122,13 @@ export default class slider extends Component {
             </View>
         );
     }
+    
 }
+const mapStateToProps = state => ({
+    isSignIn: state.auth.isLogin,
+})
+
+export default connect(mapStateToProps, null)(slider)
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -129,7 +136,13 @@ const styles = StyleSheet.create({
     txtStyle: {
         fontSize: 20,
     },
-    title: { alignSelf: 'center', fontSize: 25, marginTop: 15, color: Color.white, fontWeight: '600' },
+    title: { 
+        alignSelf: 'center', 
+        fontSize: 25, 
+        marginTop: 15, 
+        color: Color.white, 
+        fontWeight: '600'
+     },
     tenniusView: {
         flexDirection: 'row',
         backgroundColor: '#fff',

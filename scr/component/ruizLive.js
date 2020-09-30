@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { View, StatusBar, ScrollView, ImageBackground,FlatList, Dimensions, Image, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StatusBar, ScrollView, ImageBackground, FlatList, Dimensions, Image, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import Color from './../constant/color';
 import { TextInput } from 'react-native-gesture-handler';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import Firebase from './firebase';
+import { connect } from 'react-redux'
 
-export default class ruizLive extends Component {
+class ruizLive extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,22 +25,31 @@ export default class ruizLive extends Component {
                     text: child.val().prediction,
                 })
             })
-            console.warn(this.state.imagesMost);
+            // console.warn(this.state.imagesMost);
             this.setState({ imagesMost: li })
         })
     }
     renderRow = ({ item }) => {
         return (
-            <View style={{ backgroundColor: Color.orange, width: '100%', }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', marginVertical: '5%', }}>
-                    <Text style={{ textAlign: 'center', marginLeft: 10, }}>16/9</Text>
-                    <Text style={{ marginTop: 0, paddingHorizontal: 10, }}>{item.text}</Text>
-                </View>
-                <View style={{ borderBottomColor: Color.white, borderBottomWidth: 2, marginHorizontal: '5%', }}></View>
+            <View>
+                {this.props.isSignIn === '1' &&
+
+                    <View style={{ backgroundColor: Color.orange, width: '100%', }}>
+
+                        <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', marginVertical: '5%', }}>
+
+                            <Text style={{ textAlign: 'center', marginLeft: 10, }}>16/9</Text>
+                            <Text style={{ marginTop: 0, paddingHorizontal: 10, }}>{item.text}</Text>
+                        </View>
+
+                        <View style={{ borderBottomColor: Color.white, borderBottomWidth: 2, marginHorizontal: '5%', }}></View>
+                    </View>
+                }
             </View>
         )
     }
     render() {
+        // const {isSignIn} = this.props
         return (
             <View style={styles.signinContainer}>
                 <ScrollView>
@@ -60,6 +70,12 @@ export default class ruizLive extends Component {
 
     }
 }
+const mapStateToProps = state => ({
+    isSignIn: state.auth.isLogin,
+})
+
+export default connect(mapStateToProps, null)(ruizLive)
+
 const styles = StyleSheet.create({
     signinContainer: {
         flex: 1,

@@ -40,7 +40,7 @@ export default class eventPost extends Component {
             <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: 'space-between', backgroundColor: Color.greyAccent }}>
                 <Image source={{ uri: item.url }} style={{ width: 70, height: 70, }} resizeMode='stretch' />
                 <View style={{ marginRight: 10, justifyContent: 'center' }}>
-                    <Text>{item.key}</Text>
+                    {/* <Text>{item.key}</Text> */}
                     {/* <Edit onPress={() => { }} style={{ marginLeft: wp('0%'), }} name={item.edit} size={26} color="#000" /> */}
                     <Delete onPress={() => { this.deleteItem(item.key) }} style={{ marginTop: wp('0%'), }} name={'delete'} size={26} color="#000" />
                 </View>
@@ -50,7 +50,7 @@ export default class eventPost extends Component {
     render() {
         return (
             <View style={styles.signinContainer}>
-                <ScrollView>
+                {/* <ScrollView> */}
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <View></View>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('postDataPrediction')}
@@ -65,7 +65,7 @@ export default class eventPost extends Component {
                             data={this.state.imagesMost}
                             renderItem={this.renderRow} />
                     </View>
-                </ScrollView>
+                {/* </ScrollView> */}
             </View>
 
         );
