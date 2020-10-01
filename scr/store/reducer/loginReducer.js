@@ -11,22 +11,27 @@ export default (state = initailState, action) => {
     console.log("action", action.type);
     switch (action.type) {
         case allType.SIGNIN_LOADING:
-            return { 
+            return {
                 ...state,
-                 signInLoading: true,
-                }
+                signInLoading: true
+            }
         case allType.STOP_SIGNIN_LOADING:
-            return { 
-                ...state, 
+            return {
+                ...state,
+                signInLoading: false
+            }
+        case allType.SIGNIN_SUCCESS:
+            return {
+                ...state,
                 signInLoading: false,
                 isLogin: '1'
-              }
+            }
         case allType.SIGNIN_ERROR:
-            return { 
+            return {
                 ...state,
-                 isSignInError: true,
-                 signInError: action.err 
-                }
+                isSignInError: true,
+                signInError: action.err
+            }
         default:
             return state
     }

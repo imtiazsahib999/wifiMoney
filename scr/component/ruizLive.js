@@ -32,19 +32,13 @@ class ruizLive extends Component {
     renderRow = ({ item }) => {
         return (
             <View>
-                {this.props.isSignIn === '1' &&
-
-                    <View style={{ backgroundColor: Color.orange, width: '100%', }}>
-
-                        <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', marginVertical: '5%', }}>
-
-                            <Text style={{ textAlign: 'center', marginLeft: 10, }}>16/9</Text>
-                            <Text style={{ marginTop: 0, paddingHorizontal: 10, }}>{item.text}</Text>
-                        </View>
-
-                        <View style={{ borderBottomColor: Color.white, borderBottomWidth: 2, marginHorizontal: '5%', }}></View>
+                <View style={{ backgroundColor: Color.orange, width: '100%', }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', marginVertical: '5%', }}>
+                        <Text style={{ textAlign: 'center', marginLeft: 10, }}>16/9</Text>
+                        <Text style={{ marginTop: 0, paddingHorizontal: 10, }}>{item.text}</Text>
                     </View>
-                }
+                    <View style={{ borderBottomColor: Color.white, borderBottomWidth: 2, marginHorizontal: '5%', }}></View>
+                </View>
             </View>
         )
     }
@@ -52,18 +46,18 @@ class ruizLive extends Component {
         // const {isSignIn} = this.props
         return (
             <View style={styles.signinContainer}>
-                <ScrollView>
-                    <ImageBackground source={require('./../image/back1.png')} style={{ height: 80, marginBottom: '5%', }} resizeMode='stretch' >
-                        <Text style={styles.title}>Ruiz Live</Text>
-                    </ImageBackground>
-                    <View style={{ marginHorizontal: '5%', }}>
+                {/* <ScrollView> */}
+                <ImageBackground source={require('./../image/back1.png')} style={{ height: 80, marginBottom: '5%', }} resizeMode='stretch' >
+                    <Text style={styles.title}>Ruiz Live</Text>
+                </ImageBackground>
+                <View style={{ marginHorizontal: '5%', }}>
 
-                        <FlatList
-                            keyExtractor={(item, index) => item.key + ""}
-                            data={this.state.imagesMost}
-                            renderItem={this.renderRow} />
-                    </View>
-                </ScrollView>
+                    <FlatList
+                        keyExtractor={(item, index) => item.key + ""}
+                        data={this.state.imagesMost}
+                        renderItem={this.renderRow} />
+                </View>
+                {/* </ScrollView> */}
             </View>
 
         );

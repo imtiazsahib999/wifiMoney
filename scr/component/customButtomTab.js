@@ -11,8 +11,9 @@ import RuizLive_Tab from './ruizLive';
 import Comment_Tab from './comment';
 import Espace_Tab from './espace';
 import Slide_Tab from './slider';
+import { connect } from 'react-redux'
 
-export default class customButtomTab extends Component {
+class customButtomTab extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,6 +22,7 @@ export default class customButtomTab extends Component {
             comment: false,
             espace: false,
             slide: false,
+            tem: '0'
         };
     }
     ScreenView() {
@@ -51,6 +53,8 @@ export default class customButtomTab extends Component {
         }
     }
     render() {
+        const {isSignIn} = this.props
+        const {tem} = this.state
         return (
             <View style={styles.signinContainer}>
                     {this.ScreenView()}
@@ -60,43 +64,41 @@ export default class customButtomTab extends Component {
                                 onPress={() => this.setState({ profile: true, ruizLive: false, comment: false, espace: false, slide: false })}
                                 style={{
                                     alignItems: 'center',
-                                    width: wp('20%'),
+                                    // width: wp('20%'),
+                                    width: isSignIn === '0'? 100: 60,
                                     marginTop: 10,
                                 }}>
                                 <Image style={{ width: 30, height: 30, marginTop: 5, }}
                                     source={require('./../image/user.png')} resizeMode={'stretch'} />
-
                             </TouchableOpacity>
-                            <TouchableOpacity
+                            {isSignIn === '1' && <TouchableOpacity
                                 onPress={() => this.setState({ profile: false, ruizLive: true, comment: false, espace: false, slide: false })}
                                 style={{
                                     marginRight: 5,
                                     alignItems: 'center',
                                     marginTop: 10,
-
+                                    width: 60
                                 }}>
                                 <Text style={{
                                     color: this.state.ruizLive ? '#F49509' : '#fff',
                                     fontSize: 15,
-                                    width: wp('10%'),
+                                    // width: wp('10%'),
                                     textAlign: 'center'
-
                                 }}>Ruiz Live</Text>
-                            </TouchableOpacity>
+                            </TouchableOpacity>}
                             <TouchableOpacity
                                 onPress={() => this.setState({ profile: false, ruizLive: false, comment: true, espace: false, slide: false })}
                                 style={{
                                     alignItems: 'center',
                                     marginRight: 5,
                                     marginTop: 10,
-
+                                    width: isSignIn === '0'? 100: 70,
                                 }}>
                                 <Text style={{
                                     color: this.state.comment ? '#F49509' : '#fff',
                                     fontSize: 15,
-                                    width: wp('22%'),
+                                    // width: wp('22%'),
                                     textAlign: 'center'
-
                                 }}>Comment nous rejoinder?</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
@@ -105,26 +107,25 @@ export default class customButtomTab extends Component {
                                     alignItems: 'center',
                                     marginRight: 5,
                                     marginTop: 10,
-
+                                    width: isSignIn === '0' ? 100: 60,
                                 }}>
                                 <Text style={{
                                     color: this.state.espace ? '#F49509' : '#fff',
                                     fontSize: 15,
                                     textAlign: 'center',
-                                    width: wp('19%'),
-
+                                    // width: wp('19%'),
                                 }}>Espace VIP</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity
+                            {isSignIn === '1' &&<TouchableOpacity
                                 onPress={() => this.setState({ profile: false, ruizLive: false, comment: false, espace: false, slide: true })}
                                 style={{
                                     alignItems: 'center',
                                     marginTop: 10,
-
+                                    width: 60
                                 }}>
                                 <Image style={{ width: 30, height: 30, marginTop: 5, }}
                                     source={require('./../image/book.png')} resizeMode={'stretch'} />
-                            </TouchableOpacity>
+                            </TouchableOpacity>}
                         </View>
                     </View>
             </View>
@@ -133,17 +134,19 @@ export default class customButtomTab extends Component {
 
     }
 }
+const mapStateToProps = state => ({
+    isSignIn: state.auth.isLogin,
+})
+
+export default connect(mapStateToProps, null)(customButtomTab)
 const styles = StyleSheet.create({
     signinContainer: {
         flex: 1,
-        // backgroundColor: Color.orange,
 
     },
     imagebakground: {
         height: hp('13%'),
         flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center'
     },
 
 })

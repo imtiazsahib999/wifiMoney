@@ -11,7 +11,7 @@ import CheckBox from 'react-native-check-box'
 import Firebase from './firebase';
 import { connect } from 'react-redux'
 import { loginUser } from './../store/action/loginAction'
-
+import SpinnerSceen from './SpinnerSceen';
 class espace extends Component {
     constructor(props) {
         super(props);
@@ -19,7 +19,7 @@ class espace extends Component {
             email: '',
             password: '',
             errors: {},
-
+            loading: false
         };
     }
 
@@ -29,12 +29,12 @@ class espace extends Component {
                 email: '',
                 password: '',
                 errors: {},
+                // loading: true
             })
             this.props.navigation.navigate('customTopTab')
         }
         else if (nextProps.isSignInError) {
             if (nextProps.signInError.code === 'auth/invalid-email') {
-                // Alert.alert('The email address is badly formatted.')
                 this.setState({
                     errors: {
                         email: 'The email address is badly formatted.'
@@ -64,7 +64,7 @@ class espace extends Component {
 
     render() {
         const { errors } = this.state
-
+        const { signInLoading } = this.props
         return (
             <View style={styles.signinContainer}>
                 <ScrollView>
@@ -101,9 +101,11 @@ class espace extends Component {
                                 {errors.password}
                             </Text>
                         )}
-                        <TouchableOpacity onPress={() => { this.props.userLogin(this.state.email, this.state.password, this.state.errors) }} style={styles.checkoutView}>
-                            <Text style={styles.checkout}>Connector</Text>
-                        </TouchableOpacity>
+                        {signInLoading ?
+                            <SpinnerSceen /> :
+                            <TouchableOpacity onPress={() => { this.props.userLogin(this.state.email, this.state.password) }} style={styles.checkoutView}>
+                                <Text style={styles.checkout}>Connector</Text>
+                            </TouchableOpacity>}
 
                         <View style={{ marginLeft: wp('40%'), marginBottom: 10, }}>
                             <CheckBox
@@ -129,12 +131,12 @@ class espace extends Component {
 const mapStateToProps = state => ({
     isSignIn: state.auth.isLogin,
     isSignInError: state.auth.isSignInError,
-    // signInLoading: state.auth.signInLoading,
+    signInLoading: state.auth.signInLoading,
     signInError: state.auth.signInError
 })
 
 const mapDispatchToProps = dispatch => ({
-    userLogin: (email, password, error) => dispatch(loginUser(email, password, error)),
+    userLogin: (email, password) => dispatch(loginUser(email, password)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(espace)

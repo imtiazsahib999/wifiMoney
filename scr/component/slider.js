@@ -24,8 +24,9 @@ class slider extends Component {
 
         };
     }
+
     componentDidMount() {
-        const {imagesMost} = this.state
+        const { imagesMost } = this.state
         const db = Firebase.database().ref('image/')
         db.on('value', (snapshot) => {
             snapshot.forEach((child) => {
@@ -34,7 +35,7 @@ class slider extends Component {
                     url: child.val().imageUrl,
                 })
             })
-            console.log("state",this.state.imagesMost);
+            console.log("state", this.state.imagesMost);
             // this.setState({ imagesMost: li })
 
         })
@@ -51,7 +52,7 @@ class slider extends Component {
         return (
             <View style={{ width: '100%', }}>
                 <ImageBackground style={{ height: 300, marginTop: '10%', marginHorizontal: '5%', }} source={{ uri: item.url }} resizeMode='stretch'>
-                  
+
                 </ImageBackground>
             </View>
         );
@@ -111,18 +112,18 @@ class slider extends Component {
                     <ImageBackground source={require('./../image/back1.png')} style={{ height: 80 }} resizeMode='stretch' >
                         <Text style={styles.title}>Espace VIP</Text>
                     </ImageBackground>
-                    <Swiper
-                        // style={{ flex: 1 }}
-                        currentSelectIndex={0}
-                        swipeData={this.state.imagesMost}
-                        renderSwipeItem={this.renderImageSwipeItem}
-                        onScreenChange={this.screenChange}
-                    />
+                        <Swiper
+                            // style={{ flex: 1 }}
+                            currentSelectIndex={0}
+                            swipeData={this.state.imagesMost}
+                            renderSwipeItem={this.renderImageSwipeItem}
+                            onScreenChange={this.screenChange}
+                        />
                 </ScrollView>
             </View>
         );
     }
-    
+
 }
 const mapStateToProps = state => ({
     isSignIn: state.auth.isLogin,
@@ -136,13 +137,13 @@ const styles = StyleSheet.create({
     txtStyle: {
         fontSize: 20,
     },
-    title: { 
-        alignSelf: 'center', 
-        fontSize: 25, 
-        marginTop: 15, 
-        color: Color.white, 
+    title: {
+        alignSelf: 'center',
+        fontSize: 25,
+        marginTop: 15,
+        color: Color.white,
         fontWeight: '600'
-     },
+    },
     tenniusView: {
         flexDirection: 'row',
         backgroundColor: '#fff',
