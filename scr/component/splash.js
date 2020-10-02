@@ -15,7 +15,7 @@ export default class splash extends Component {
     }
     componentDidMount() {
 
-        setTimeout(() => { this.props.navigation.navigate('customButtomTab') }, 2000);
+        setTimeout(() => { this.props.navigation.navigate('mainScreen') }, 2000);
     
       }
     render() {

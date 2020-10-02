@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.0",
+    "@react-native-community/datetimepicker": "^3.0.3",
     "@react-native-community/masked-view": "^0.1.10",
     "firebase": "^7.21.0",
+    "moment": "^2.29.0",
     "react": "16.13.1",
     "react-native": "0.63.2",
     "react-native-check-box": "^2.1.7",
@@ -20,6 +22,7 @@
     "react-native-gesture-handler": "^1.8.0",
     "react-native-image-crop-picker": "^0.35.0",
     "react-native-image-picker": "^2.3.4",
+    "react-native-modal-datetime-picker": "^9.0.0",
     "react-native-reanimated": "^1.13.0",
     "react-native-responsive-screen": "^1.4.1",
     "react-native-safe-area-context": "^3.1.8",

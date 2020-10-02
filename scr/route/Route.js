@@ -2,7 +2,6 @@ import {createStackNavigator} from 'react-navigation-stack';
 import SafeAreaView from 'react-native-safe-area-context';
 import { createAppContainer } from 'react-navigation';
 import splash from '../component/splash';
-import signIn from './../component/signIn';
 import profile from './../component/profile';
 import comment from './../component/comment';
 import espace from './../component/espace';
@@ -15,7 +14,7 @@ import eventPost from './../component/eventPost';
 import prediction from './../component/prediction';
 import customButtomTab from './../component/customButtomTab';
 import customTopTab from './../component/CustomTopTab';
-
+import mainScreen from './../component/mainScreen';
 
 const Route =  createStackNavigator({
     splash: {
@@ -24,8 +23,8 @@ const Route =  createStackNavigator({
             headerShown: false
         },
     },
-    signIn: {
-        screen: signIn,
+    mainScreen: {
+        screen: mainScreen,
         navigationOptions: {
             headerShown: false
         },

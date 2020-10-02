@@ -6,5 +6,15 @@ export default {
     white: '#fff',
     star: '#FFCC00',
     black: '#000000',
-    orange: '#F49509'
+    orange: '#F49509',
+    shadow: {
+        shadowColor: '#30C1DD',
+        shadowRadius: 10,
+        shadowOpacity: 0.6,
+        elevation: 8,
+        shadowOffset: {
+            width: 0,
+            height: 4
+        }
+    }
 }

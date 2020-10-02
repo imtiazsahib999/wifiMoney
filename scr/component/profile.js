@@ -7,6 +7,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import AntIcon from 'react-native-vector-icons/Entypo'
 import Facebook from 'react-native-vector-icons/FontAwesome'
+import Whatsapp from 'react-native-vector-icons/FontAwesome'
 import Snapchat from 'react-native-vector-icons/FontAwesome'
 import Twite from 'react-native-vector-icons/AntDesign'
 
@@ -69,7 +70,7 @@ export default class profile extends Component {
                             <Text style={{ color: Color.white }}>Cliquez ici</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 15, }}>
-                            <TouchableOpacity onPress={this.onShareFacebook} style={[styles.Facebook, { backgroundColor: '#3B5998' }]}>
+                            <TouchableOpacity onPress={this.onShareFacebook} style={[styles.Facebook, { backgroundColor: '#1877F2' }]}>
                                 <Facebook style={{}} name={'facebook-f'} size={24} color="#fff"/>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={this.onShareSnapchat} style={[styles.Facebook, { backgroundColor: '#FFFC00' }]}>
@@ -78,14 +79,15 @@ export default class profile extends Component {
                             <TouchableOpacity onPress={this.onShareTwitter} style={[styles.Facebook, { backgroundColor: '#55ACEE' }]}>
                                 <Twite style={{}} name={'twitter'} size={24} color="#fff"/>
                             </TouchableOpacity>
+                            <TouchableOpacity onPress={this.onShareTwitter} style={[styles.Facebook, { backgroundColor: '#009688' }]}>
+                                <Whatsapp style={{}} name={'whatsapp'} size={24} color="#fff"/>
+                            </TouchableOpacity>
                         </View>
                         <Text style={{ alignSelf: 'center', marginTop: 10, }}>Lorem ipsum, or lipsum as it is sometimes </Text>
                     </View>
                 </ScrollView>
             </View>
-
         );
-
     }
 }
 const styles = StyleSheet.create({

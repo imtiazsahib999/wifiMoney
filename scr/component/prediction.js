@@ -15,8 +15,6 @@ export default class prediction extends Component {
         super(props);
         this.state = {
             imagesMost: [],
-            col: 2,
-            list: []
         };
     }
 
@@ -28,25 +26,32 @@ export default class prediction extends Component {
                 li.push({
                     key: child.key,
                     text: child.val().prediction,
+                    date: child.val().date,
+                    title: child.val().title,
                 })
             })
             console.warn(this.state.imagesMost);
             this.setState({ imagesMost: li })
         })
     }
-    deleteItem(key){
+    deleteItem(key) {
         Firebase.database().ref(`addPredict/${key}`).remove()
     }
 
-    
+
     renderRow = ({ item }) => {
         return (
             <View style={{ flexDirection: 'row', marginTop: 10, padding: 5, justifyContent: 'space-between', backgroundColor: Color.greyAccent }}>
-                {/* <Image source={item.image} style={{ width: 70, height: 70, }} resizeMode='stretch' /> */}
-                <Text style={{marginLeft: 10, marginTop: 10, width: '80%'}}>{item.text}</Text>
+                <View style={{flexDirection: 'row', flex: 2}}>
+                    <Text style={{ marginLeft: 10, alignSelf: 'center' }}>{item.date}</Text>
+                    <View style={{width: '80%'}}>
+                        <Text style={{ marginLeft: 10, marginTop: 0, fontWeight: '700' }}>{item.title}</Text>
+                        <Text style={{ marginLeft: 10, marginTop: 10,  }}>{item.text}</Text>
+                    </View>
+                </View>
                 <View style={{ marginRight: 10, justifyContent: 'center' }}>
-                    <Edit onPress={() => { this.props.navigation.navigate('updatePrediction', {TEXT: item.text, KEY: item.key})}} style={{ marginLeft: wp('0%'), }} name={'edit'} size={26} color="#000" />
-                    <Delete onPress={() => { this.deleteItem(item.key)}} style={{ marginTop: wp('2%'), }} name={'delete'} size={26} color="#000" />
+                    <Edit onPress={() => { this.props.navigation.navigate('updatePrediction', { TEXT: item.text, KEY: item.key }) }} style={{ marginLeft: wp('0%'), }} name={'edit'} size={26} color="#000" />
+                    <Delete onPress={() => { this.deleteItem(item.key) }} style={{ marginTop: wp('2%'), }} name={'delete'} size={26} color="#000" />
                 </View>
             </View>
         )
@@ -69,6 +74,7 @@ export default class prediction extends Component {
                             data={this.state.imagesMost}
                             renderItem={this.renderRow} />
                     </View>
+
                 </ScrollView>
             </View>
 

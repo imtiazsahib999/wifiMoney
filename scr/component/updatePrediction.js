@@ -7,25 +7,50 @@ import IcIcon from 'react-native-vector-icons/MaterialIcons'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import Firebase from './firebase';
-
+import DateTimePickerModal from "react-native-modal-datetime-picker"
+import moment from 'moment';
 
 export default class updatePrediction extends Component {
     constructor(props) {
         super(props);
         this.state = {
             predict: '',
-            image: this.props.navigation.getParam('TEXT'),
+            title: '',
+            chooseDate: '',
+            isVisibleDate: false,
             key: this.props.navigation.getParam('KEY'),
         };
-        console.warn(this.state.image);
     }
-    async updateItem(key){
-        const {predict} = this.state
-        await Firebase.database().ref(`addPredict/${key}`).update({prediction: predict})
-        {  this.props.navigation.navigate('customTopTab')}
+    async updateItem(key) {
+        const { predict, title, chooseDate } = this.state
+        await Firebase.database().ref(`addPredict/${key}`).update({ 
+            prediction: predict,
+            title: title,
+            date: chooseDate
+         })
+        { this.props.navigation.navigate('customTopTab') }
 
     }
+    // ######################## date picker ####################
+    handlePicker = (date) => {
+        this.setState({
+            isVisibleDate: false,
+            chooseDate: moment(date).format('MM-DD')
+        })
+    };
 
+    hidePicker = () => {
+        this.setState({
+            isVisibleDate: false,
+
+        })
+    };
+
+    showPicker = () => {
+        this.setState({
+            isVisibleDate: true,
+        })
+    };
     render() {
         return (
             <View style={styles.signinContainer}>
@@ -36,18 +61,45 @@ export default class updatePrediction extends Component {
                     </View>
                 </View>
                 <ScrollView>
-                    <View style={{ marginHorizontal: '5%',marginTop: 5, }}>
-                        <Text>Enter Prediction</Text>
-                        <TextInput style={{}}
-                            placeholder="Enter text here"
-                            underlineColorAndroid={Color.greyPrimray}
-                            value={this.state.predict}
-                            onChangeText={predict => this.setState({ predict })}
-                        />
-                        <TouchableOpacity style={styles.checkoutView}
-                            onPress={() => this.updateItem(this.state.key)}>
-                            <Text style={styles.checkout}>Updated</Text>
-                        </TouchableOpacity>
+                    <View style={{ marginHorizontal: '5%', marginTop: 5, }}>
+                        <View style={{ marginHorizontal: '5%', marginTop: 5, }}>
+                            <Text style={{ fontSize: 20, fontWeight: '700' }}>Update Prediction</Text>
+                            <TextInput style={{}}
+                                placeholder="Enter Title"
+                                underlineColorAndroid={Color.greyPrimray}
+                                value={this.state.title}
+                                onChangeText={title => this.setState({ title })}
+                            />
+                            <TextInput style={{}}
+                                placeholder="Enter Prediction"
+                                underlineColorAndroid={Color.greyPrimray}
+                                value={this.state.predict}
+                                onChangeText={predict => this.setState({ predict })}
+                            />
+                            <TouchableOpacity style={[styles.input1, Color.shadow]} onPress={this.showPicker}>
+                                <TextInput
+                                    style={{ alignSelf: 'center', color: '#000', fontWeight: '500', }}
+
+                                    //   label='Offer Description'
+                                    placeholder="Select Date"
+                                    placeholderTextColor={'#000'}
+                                    editable={false}
+                                    value={this.state.chooseDate}
+                                    onChangeText={chooseDate => this.setState({ chooseDate })}
+                                />
+                            </TouchableOpacity>
+                            <DateTimePickerModal
+                                isVisible={this.state.isVisibleDate}
+                                onConfirm={this.handlePicker}
+                                onCancel={this.hidePicker}
+                                mode={'date'}
+                                datePickerModeAndroid={'spinner'}
+                            />
+                            <TouchableOpacity style={styles.checkoutView}
+                                onPress={() => this.updateItem(this.state.key)}>
+                                <Text style={styles.checkout}>Updated</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </ScrollView>
             </View>
@@ -73,6 +125,13 @@ const styles = StyleSheet.create({
     checkout: {
         color: '#fff',
         fontWeight: '700'
-    }
+    },
+    input1: {
+        // width: wp('40%'),
+        height: hp('8%'),
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        marginTop: 10,
+    },
 
 })

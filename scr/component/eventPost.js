@@ -13,7 +13,6 @@ export default class eventPost extends Component {
         super(props);
         this.state = {
             imagesMost: [],
-            col: 2,
         };
     }
     componentDidMount() {
@@ -27,7 +26,7 @@ export default class eventPost extends Component {
                 })
             })
             this.setState({ imagesMost: li })
-            console.log("corrent", li);
+            // console.log("corrent", li);
 
         })
     }

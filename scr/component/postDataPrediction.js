@@ -69,7 +69,7 @@ export default class postDataPrediction extends Component {
                 </View>
                 <ScrollView>
                     <View style={{ marginHorizontal: '5%', marginTop: 5, }}>
-                        <Text>Select Image </Text>
+                        <Text style={{fontSize: 20, fontWeight: '700'}}>Select Image</Text>
                         {photo && (
                             <Image
                                 source={{ uri: photo.uri }}

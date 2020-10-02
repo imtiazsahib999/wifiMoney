@@ -23,6 +23,8 @@ class ruizLive extends Component {
                 li.push({
                     key: child.key,
                     text: child.val().prediction,
+                    date: child.val().date,
+                    title: child.val().title,
                 })
             })
             // console.warn(this.state.imagesMost);
@@ -34,8 +36,11 @@ class ruizLive extends Component {
             <View>
                 <View style={{ backgroundColor: Color.orange, width: '100%', }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%', marginVertical: '5%', }}>
-                        <Text style={{ textAlign: 'center', marginLeft: 10, }}>16/9</Text>
-                        <Text style={{ marginTop: 0, paddingHorizontal: 10, }}>{item.text}</Text>
+                        <Text style={{ textAlign: 'center', marginLeft: 10, }}>{item.date}</Text>
+                        <View style={{ marginRight: 10, }}>
+                            <Text style={{ paddingHorizontal: 10, fontWeight: '700' }}>{item.title}</Text>
+                            <Text style={{ paddingHorizontal: 10, }}>{item.text}</Text>
+                        </View>
                     </View>
                     <View style={{ borderBottomColor: Color.white, borderBottomWidth: 2, marginHorizontal: '5%', }}></View>
                 </View>
