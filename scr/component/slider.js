@@ -14,10 +14,6 @@ class slider extends Component {
         super(props);
         this.state = {
             imgArray: [
-                { image: require('./../image/back.jpg'), text: 'October 2019' },
-                { image: require('./../image/back.jpg'), text: 'November 2019' },
-                { image: require('./../image/back.jpg'), text: 'Deecember 2019' },
-                { image: require('./../image/back.jpg'), text: 'November 2019' }
             ],
             currentIndex: 0,
             imagesMost: [],
@@ -40,7 +36,6 @@ class slider extends Component {
 
         })
     }
-
     // Handled swipe position change
     // screenChange = index => {
     //     console.log("index when change :=> \n", index);
@@ -57,7 +52,6 @@ class slider extends Component {
             </View>
         );
     };
-
     // ################## silder #######################
     //     <ImageBackground style={{ height: '100%', marginTop: '10%', marginHorizontal: '5%', }} source={{ uri: item.url }} resizeMode='cover'>
     //     <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
@@ -123,7 +117,6 @@ class slider extends Component {
             </View>
         );
     }
-
 }
 const mapStateToProps = state => ({
     isSignIn: state.auth.isLogin,

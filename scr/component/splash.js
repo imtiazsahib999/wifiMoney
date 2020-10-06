@@ -3,10 +3,7 @@ import { View, StatusBar, ImageBackground, ScrollView, StyleSheet, Image, Text, 
 import Color from '../constant/color';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-
-
 export default class splash extends Component {
-
     constructor(props) {
         super(props)
         this.state = {
@@ -14,9 +11,7 @@ export default class splash extends Component {
         }
     }
     componentDidMount() {
-
         setTimeout(() => { this.props.navigation.navigate('mainScreen') }, 2000);
-    
       }
     render() {
         return (

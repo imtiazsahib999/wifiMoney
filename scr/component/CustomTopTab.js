@@ -45,7 +45,6 @@ export default class customTopTab extends Component {
                             fontSize: 15,
                             width: wp('30%'),
                             textAlign: 'center'
-
                         }}>Prediction</Text>
 
                     </TouchableOpacity>
@@ -61,7 +60,6 @@ export default class customTopTab extends Component {
                             fontSize: 15,
                             width: wp('30%'),
                             textAlign: 'center'
-
                         }}>Event Post</Text>
                     </TouchableOpacity>
                 </View>

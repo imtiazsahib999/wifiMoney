@@ -17,7 +17,6 @@ export default class prediction extends Component {
             imagesMost: [],
         };
     }
-
     componentDidMount() {
         const db = Firebase.database().ref('addPredict/')
         db.on('value', (snapshot) => {
@@ -37,8 +36,6 @@ export default class prediction extends Component {
     deleteItem(key) {
         Firebase.database().ref(`addPredict/${key}`).remove()
     }
-
-
     renderRow = ({ item }) => {
         return (
             <View style={{ flexDirection: 'row', marginTop: 10, padding: 5, justifyContent: 'space-between', backgroundColor: Color.greyAccent }}>
@@ -56,7 +53,6 @@ export default class prediction extends Component {
             </View>
         )
     }
-
     render() {
         return (
             <View style={styles.signinContainer}>
@@ -74,12 +70,9 @@ export default class prediction extends Component {
                             data={this.state.imagesMost}
                             renderItem={this.renderRow} />
                     </View>
-
                 </ScrollView>
             </View>
-
         );
-
     }
 }
 const styles = StyleSheet.create({

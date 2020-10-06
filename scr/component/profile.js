@@ -18,17 +18,20 @@ export default class profile extends Component {
 
         };
     }
-
     onShareFacebook = async () =>{
-        const faceBookUrl = 'https://www.facebook.com/';
+        const faceBookUrl = 'https://www.facebook.com/wifimoneytv/';
         return Linking.openURL(faceBookUrl)
     }
     onShareSnapchat = async () =>{
-        const faceBookUrl = 'https://accounts.snapchat.com/accounts/login?continue=https%3A%2F%2Faccounts.snapchat.com%2Faccounts%2Fwelcome';
+        const faceBookUrl = 'https://www.snapchat.com/add/chriswifimoney';
         return Linking.openURL(faceBookUrl)
     }
     onShareTwitter = async () =>{
-        const faceBookUrl = 'https://twitter.com/login?lang=en';
+        const faceBookUrl = 'https://www.instagram.com/chriswifimoney/';
+        return Linking.openURL(faceBookUrl)
+    }
+    onShareWhatsapp = async () =>{
+        const faceBookUrl = 'm.me/wifimoneytv';
         return Linking.openURL(faceBookUrl)
     }
 
@@ -77,9 +80,9 @@ export default class profile extends Component {
                                 <Snapchat style={{}} name={'snapchat-ghost'} size={24} color="#fff" />
                             </TouchableOpacity>
                             <TouchableOpacity onPress={this.onShareTwitter} style={[styles.Facebook, { backgroundColor: '#55ACEE' }]}>
-                                <Twite style={{}} name={'twitter'} size={24} color="#fff"/>
+                                <Twite style={{}} name={'instagram'} size={24} color="#fff"/>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={this.onShareTwitter} style={[styles.Facebook, { backgroundColor: '#009688' }]}>
+                            <TouchableOpacity onPress={this.onShareWhatsapp} style={[styles.Facebook, { backgroundColor: '#009688' }]}>
                                 <Whatsapp style={{}} name={'whatsapp'} size={24} color="#fff"/>
                             </TouchableOpacity>
                         </View>

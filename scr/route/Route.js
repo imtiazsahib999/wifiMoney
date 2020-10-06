@@ -104,6 +104,4 @@ const Route =  createStackNavigator({
   },{
       initialRouteName: 'splash'
   })
-
 export default createAppContainer(Route);
-

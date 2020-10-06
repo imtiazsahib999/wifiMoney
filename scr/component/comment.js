@@ -16,7 +16,6 @@ export default class comment extends Component {
     }
     render() {
         return (
-
             <View style={styles.signinContainer}>
                 <ScrollView>
                     <ImageBackground source={require('./../image/back1.png')} style={{ height: 80 }} resizeMode='stretch' >
@@ -31,9 +30,7 @@ export default class comment extends Component {
                     </View>
                 </ScrollView>
             </View>
-
         );
-
     }
 }
 const styles = StyleSheet.create({
@@ -41,7 +38,15 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Color.white,
     },
-    title: { alignSelf: 'center', textAlign: 'center', width: 200, fontSize: 25, marginTop: 5, color: Color.white, fontWeight: '600' },
+    title: {
+        alignSelf: 'center',
+        textAlign: 'center',
+        width: 200,
+        fontSize: 25,
+        marginTop: 5,
+        color: Color.white,
+        fontWeight: '600'
+    },
     checkoutView: {
         backgroundColor: Color.orange,
         marginHorizontal: wp('10%'),

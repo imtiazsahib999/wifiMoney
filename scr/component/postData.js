@@ -20,6 +20,12 @@ export default class postData extends Component {
             isVisibleDate: false,
         };
     }
+    data(){
+        const {data1, data2, data3, text} = this.state
+        if(data1 && data2 && data3 && text === 'us'){
+
+        }
+    }
     // ######################## date picker ####################
     handlePicker = (date) => {
         this.setState({
@@ -27,14 +33,12 @@ export default class postData extends Component {
             chooseDate: moment(date).format('MM-DD')
         })
     };
-
     hidePicker = () => {
         this.setState({
             isVisibleDate: false,
 
         })
     };
-
     showPicker = () => {
         this.setState({
             isVisibleDate: true,
@@ -55,9 +59,8 @@ export default class postData extends Component {
             chooseDate: ''
         })
         { this.props.navigation.navigate('customTopTab') }
-
     }
-
+    
     render() {
         return (
             <View style={styles.signinContainer}>
@@ -107,9 +110,7 @@ export default class postData extends Component {
                     </View>
                 </ScrollView>
             </View>
-
         );
-
     }
 }
 const styles = StyleSheet.create({

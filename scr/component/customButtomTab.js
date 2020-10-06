@@ -54,7 +54,6 @@ class customButtomTab extends Component {
     }
     render() {
         const {isSignIn} = this.props
-        const {tem} = this.state
         return (
             <View style={styles.signinContainer}>
                     {this.ScreenView()}
@@ -129,9 +128,7 @@ class customButtomTab extends Component {
                         </View>
                     </View>
             </View>
-
         );
-
     }
 }
 const mapStateToProps = state => ({
@@ -142,7 +139,6 @@ export default connect(mapStateToProps, null)(customButtomTab)
 const styles = StyleSheet.create({
     signinContainer: {
         flex: 1,
-
     },
     imagebakground: {
         height: hp('13%'),

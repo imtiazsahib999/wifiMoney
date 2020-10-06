@@ -123,9 +123,7 @@ class espace extends Component {
                     </View>
                 </ScrollView>
             </View>
-
         );
-
     }
 }
 const mapStateToProps = state => ({
@@ -146,7 +144,13 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Color.white,
     },
-    title: { alignSelf: 'center', fontSize: 25, marginTop: 15, color: Color.white, fontWeight: '600' },
+    title: {
+        alignSelf: 'center',
+        fontSize: 25,
+        marginTop: 15,
+        color: Color.white,
+        fontWeight: '600'
+    },
     inputView: {
         borderWidth: 2,
         borderColor: Color.greyPrimray,

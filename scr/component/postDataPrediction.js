@@ -21,7 +21,6 @@ export default class postDataPrediction extends Component {
             imageId: ''
         };
     }
-
     handleChoosePhoto = () => {
         const options = {
             noData: true,
@@ -57,7 +56,6 @@ export default class postDataPrediction extends Component {
         })
         {  this.props.navigation.navigate('customTopTab')}
     }
-    
     render() {
         const { photo } = this.state
         return (
@@ -88,9 +86,7 @@ export default class postDataPrediction extends Component {
                     </View>
                 </ScrollView>
             </View>
-
         );
-
     }
 }
 const styles = StyleSheet.create({

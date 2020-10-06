@@ -26,8 +26,6 @@ export default class eventPost extends Component {
                 })
             })
             this.setState({ imagesMost: li })
-            // console.log("corrent", li);
-
         })
     }
     deleteItem(key) {
@@ -66,9 +64,7 @@ export default class eventPost extends Component {
                     </View>
                 {/* </ScrollView> */}
             </View>
-
         );
-
     }
 }
 const styles = StyleSheet.create({

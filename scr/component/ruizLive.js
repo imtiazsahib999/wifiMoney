@@ -48,7 +48,6 @@ class ruizLive extends Component {
         )
     }
     render() {
-        // const {isSignIn} = this.props
         return (
             <View style={styles.signinContainer}>
                 {/* <ScrollView> */}
@@ -56,7 +55,6 @@ class ruizLive extends Component {
                     <Text style={styles.title}>Ruiz Live</Text>
                 </ImageBackground>
                 <View style={{ marginHorizontal: '5%', }}>
-
                     <FlatList
                         keyExtractor={(item, index) => item.key + ""}
                         data={this.state.imagesMost}
@@ -64,15 +62,12 @@ class ruizLive extends Component {
                 </View>
                 {/* </ScrollView> */}
             </View>
-
         );
-
     }
 }
 const mapStateToProps = state => ({
     isSignIn: state.auth.isLogin,
 })
-
 export default connect(mapStateToProps, null)(ruizLive)
 
 const styles = StyleSheet.create({
@@ -80,7 +75,11 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Color.homebackroundColor,
     },
-    title: { alignSelf: 'center', fontSize: 25, marginTop: 15, color: Color.white, fontWeight: '600' },
-
-
+    title: {
+        alignSelf: 'center',
+        fontSize: 25,
+        marginTop: 15,
+        color: Color.white,
+        fontWeight: '600'
+    },
 })
